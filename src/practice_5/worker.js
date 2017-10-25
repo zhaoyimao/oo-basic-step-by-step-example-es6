@@ -1,13 +1,12 @@
 import Person from "./person.js";
 
 class Worker extends Person {
-    constructor(name, age, klass) {
+    constructor(name, age) {
         super(name, age);
-        this.klass = klass;
     }
 
     introduce() {
-        return `${this._basicIntroduce()} I am a Worker. I have a job.`;
+        return `${super.introduce()} I am a Teacher. I have a job.`;
     }
 }
 

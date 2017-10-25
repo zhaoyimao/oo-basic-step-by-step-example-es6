@@ -4,12 +4,8 @@ class Person {
         this.age = age;
     }
 
-    _basicIntroduce() {
-        return `My name is ${this.name}. I am ${this.age} years old.`;
-    }
-
     introduce() {
-        return this._basicIntroduce();
+        return `My name is ${this.name}. I am ${this.age} years old.`;
     }
 }
 

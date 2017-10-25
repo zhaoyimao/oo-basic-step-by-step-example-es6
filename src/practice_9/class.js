@@ -11,7 +11,13 @@ class Class {
     assignLeader(student) {
         if (student && student.klass.equal(this)) {
             this.leader = student;
+        } else {
+            console.log("It is not one of us.");
         }
+    }
+
+    appendMember(student) {
+        student.klass = this;
     }
 
     equal(klass) {

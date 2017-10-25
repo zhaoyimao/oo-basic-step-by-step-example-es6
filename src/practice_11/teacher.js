@@ -4,7 +4,7 @@ class Teacher extends Person {
     constructor(id, name, age, klasses) {
         super(id, name, age);
         this.klasses = [];
-        if(klasses){
+        if (klasses) {
             this.klasses = this.klasses.concat(klasses);
         }
     }
@@ -31,6 +31,20 @@ class Teacher extends Person {
 
     teach(order) {
         return `${super.introduce()} I am a Teacher. I teach ${order}.`;
+    }
+
+    isTeaching(student) {
+        return this.klasses.some(klass => {
+            klass.isIn(student);
+        });
+    }
+
+    notifyJoin({name}, klass) {
+        console.log(`I am ${this.name}. I know ${name} has joined ${klass.getDisplayName()}.`);
+    }
+
+    notifyAssignLeader({name}, klass) {
+        console.log(`I am ${this.name}. I know ${name} become Leader of ${klass.getDisplayName()}.`);
     }
 }
 

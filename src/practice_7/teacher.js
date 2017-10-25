@@ -8,15 +8,30 @@ class Teacher extends Person {
 
     introduce() {
         if (this.klass) {
-            return this.teach(`Class ${this.klass}`);
+            return this.teach(this.klass.getDisplayName());
         } else {
             return this.teach("No Class");
-
         }
     }
 
+    basicIntroduce(order) {
+        return `${super.introduce()} I am a Teacher.`;
+    }
+
     teach(order) {
-        return `${super.introduce()} I am a Teacher. I teach ${order}.`;
+        return `${this.basicIntroduce()} I teach ${order}.`;
+    }
+
+    doNotTeach(order) {
+        return `${this.basicIntroduce()} I don't teach ${order}.`;
+    }
+
+    introduceWith({klass, name}) {
+        if (klass.equal(this.klass)) {
+            return this.teach(name);
+        } else {
+            return this.doNotTeach(name);
+        }
     }
 }
 

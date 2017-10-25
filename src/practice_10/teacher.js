@@ -1,14 +1,29 @@
 import Person from "./person.js";
 
 class Teacher extends Person {
-    constructor(id, name, age, klass) {
+    constructor(id, name, age, klasses) {
         super(id, name, age);
-        this.klass = klass;
+        this.klasses = [];
+        if(klasses){
+            this.klasses = this.klasses.concat(klasses);
+        }
+    }
+
+    _buildKlassesString() {
+        let classesString = "";
+        this.klasses.forEach(({number}, index, {length}) => {
+            classesString += number;
+            if (index != length - 1) {
+                classesString += ", ";
+            }
+        });
+        return classesString;
     }
 
     introduce() {
-        if (this.klass) {
-            return this.teach(this.klass.getDisplayName());
+        if (this.klasses && this.klasses.length!=0) {
+            const classesString = this._buildKlassesString();
+            return this.teach(`Class ${classesString}`);
         } else {
             return this.teach("No Class");
         }
@@ -16,7 +31,7 @@ class Teacher extends Person {
 
     teach(order) {
         return `${super.introduce()} I am a Teacher. I teach ${order}.`;
-   }
+    }
 }
 
 export default Teacher;

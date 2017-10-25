@@ -16,7 +16,7 @@ class Teacher extends Person {
 
     teach(order) {
         return `${super.introduce()} I am a Teacher. I teach ${order}.`;
-    }
+   }
 }
 
 export default Teacher;

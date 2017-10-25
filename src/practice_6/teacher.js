@@ -1,16 +1,17 @@
 import Person from "./person.js";
 
 class Teacher extends Person {
-    constructor(id, name, age, klass) {
-        super(id, name, age);
+    constructor(name, age, klass) {
+        super(name, age);
         this.klass = klass;
     }
 
     introduce() {
         if (this.klass) {
-            return this.teach(this.klass.getDisplayName());
+            return this.teach(`Class ${this.klass}`);
         } else {
             return this.teach("No Class");
+
         }
     }
 
