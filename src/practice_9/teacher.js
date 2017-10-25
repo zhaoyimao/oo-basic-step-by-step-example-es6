@@ -1,25 +1,22 @@
 import Person from "./person.js";
 
-function Teacher(id, name, age, klass) {
-    Person.apply(this, arguments);
-    this.klass = klass;
-}
-
-Teacher.prototype = Object.create(Person.prototype);
-Teacher.prototype.constructor = Teacher;
-
-Teacher.prototype.super_introduce = Teacher.prototype.introduce;
-
-Teacher.prototype.introduce = function() {
-    if (this.klass) {
-        return this.teach(this.klass.getDisplayName());
-    } else {
-        return this.teach("No Class");
+class Teacher extends Person {
+    constructor(id, name, age, klass) {
+        super(id, name, age);
+        this.klass = klass;
     }
-};
 
-Teacher.prototype.teach = function(order) {
-    return `${this.super_introduce()} I am a Teacher. I teach ${order}.`;
-};
+    introduce() {
+        if (this.klass) {
+            return this.teach(this.klass.getDisplayName());
+        } else {
+            return this.teach("No Class");
+        }
+    }
+
+    teach(order) {
+        return `${super.introduce()} I am a Teacher. I teach ${order}.`;
+    }
+}
 
 export default Teacher;

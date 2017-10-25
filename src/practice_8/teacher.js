@@ -1,41 +1,38 @@
 import Person from "./person.js";
 
-function Teacher(name, age, klass) {
-    Person.apply(this, arguments);
-    this.klass = klass;
+class Teacher extends Person {
+    constructor(name, age, klass) {
+        super(name, age);
+        this.klass = klass;
+    }
+
+    introduce() {
+        if (this.klass) {
+            return this.teach(this.klass.getDisplayName());
+        } else {
+            return this.teach("No Class");
+        }
+    }
+
+    basicIntroduce(order) {
+        return `${super.introduce()} I am a Teacher.`;
+    }
+
+    teach(order) {
+        return `${this.basicIntroduce()} I teach ${order}.`;
+    }
+
+    doNotTeach(order) {
+        return `${this.basicIntroduce()} I don't teach ${order}.`;
+    }
+
+    introduceWith({klass, name}) {
+        if (klass.equal(this.klass)) {
+            return this.teach(name);
+        } else {
+            return this.doNotTeach(name);
+        }
+    }
 }
-
-Teacher.prototype = Object.create(Person.prototype);
-Teacher.prototype.constructor = Teacher;
-
-Teacher.prototype.super_introduce = Teacher.prototype.introduce;
-
-Teacher.prototype.introduce = function() {
-    if (this.klass) {
-        return this.teach(this.klass.getDisplayName());
-    } else {
-        return this.teach("No Class");
-    }
-};
-
-Teacher.prototype.basicIntroduce = function(order) {
-    return `${this.super_introduce()} I am a Teacher.`;
-};
-
-Teacher.prototype.teach = function(order) {
-    return `${this.basicIntroduce()} I teach ${order}.`;
-};
-
-Teacher.prototype.doNotTeach = function(order) {
-    return `${this.basicIntroduce()} I don't teach ${order}.`;
-};
-
-Teacher.prototype.introduceWith = function({klass, name}) {
-    if (klass.equal(this.klass)) {
-        return this.teach(name);
-    } else {
-        return this.doNotTeach(name);
-    }
-};
 
 export default Teacher;

@@ -1,54 +1,56 @@
-function Class(number) {
-    this.number = number;
-    this.leader;
-    this.members = [];
-    this.assignLeaderListeners = [];
-    this.joinListeners = [];
-}
-
-Class.prototype.getDisplayName = function() {
-    return `Class ${this.number}`;
-};
-
-Class.prototype.assignLeader = function(student) {
-    if (student && student.klass.equal(this)) {
-        this.leader = student;
-        const me = this;
-        this.assignLeaderListeners.forEach(listener => {
-            listener.notifyAssignLeader(student, me);
-        });
-    } else {
-        console.log("It is not one of us.");
+class Class {
+    constructor(number) {
+        this.number = number;
+        this.leader;
+        this.members = [];
+        this.assignLeaderListeners = [];
+        this.joinListeners = [];
     }
-};
 
-Class.prototype.appendMember = function(student) {
-    student.klass = this;
-    this.members.push(student);
-    const me = this;
-    this.joinListeners.forEach(listener => {
-        listener.notifyJoin(student, me);
-    });
-};
+    getDisplayName() {
+        return `Class ${this.number}`;
+    }
 
-Class.prototype.equal = function(klass) {
-    return klass && this.number == klass.number;
-};
+    assignLeader(student) {
+        if (student && student.klass.equal(this)) {
+            this.leader = student;
+            const me = this;
+            this.assignLeaderListeners.forEach(listener => {
+                listener.notifyAssignLeader(student, me);
+            });
+        } else {
+            console.log("It is not one of us.");
+        }
+    }
 
-Class.prototype.isLeader = function(student) {
-    return this.leader && student && student.equal(this.leader);
-};
+    appendMember(student) {
+        student.klass = this;
+        this.members.push(student);
+        const me = this;
+        this.joinListeners.forEach(listener => {
+            listener.notifyJoin(student, me);
+        });
+    }
 
-Class.prototype.isIn = function(student) {
-    return this.members.some(member => member.equal(student));
-};
+    equal(klass) {
+        return klass && this.number == klass.number;
+    }
 
-Class.prototype.registerJoinListener = function(listener) {
-    this.joinListeners.push(listener);
-};
+    isLeader(student) {
+        return this.leader && student && student.equal(this.leader);
+    }
 
-Class.prototype.registerAssignLeaderListener = function(listener) {
-    this.assignLeaderListeners.push(listener);
-};
+    isIn(student) {
+        return this.members.some(member => member.equal(student));
+    }
+
+    registerJoinListener(listener) {
+        this.joinListeners.push(listener);
+    }
+
+    registerAssignLeaderListener(listener) {
+        this.assignLeaderListeners.push(listener);
+    }
+}
 
 export default Class;

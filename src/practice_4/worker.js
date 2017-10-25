@@ -1,13 +1,14 @@
 import Person from "./person.js";
 
-function Worker(name, age, klass) {
-    Person.apply(this, arguments);
-    this.klass = klass;
+class Worker extends Person {
+    constructor(name, age, klass) {
+        super(name, age);
+        this.klass = klass;
+    }
+
+    introduce() {
+        return "I am a Worker. I have a job.";
+    }
 }
-
-Worker.prototype = Object.create(Person.prototype);
-Worker.prototype.constructor = Worker;
-
-Worker.prototype.introduce = () => "I am a Worker. I have a job.";
 
 export default Worker;

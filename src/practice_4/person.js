@@ -1,10 +1,12 @@
-function Person(name, age){
-    this.name = name;
-    this.age = age;
-}
+class Person {
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
 
-Person.prototype.introduce = function(){
-    return `My name is ${this.name}. I am ${this.age} years old.`;
-};
+    introduce() {
+        return `My name is ${this.name}. I am ${this.age} years old.`;
+    }
+}
 
 export default Person;

@@ -1,31 +1,33 @@
-function Class(number) {
-    this.number = number;
-    this.leader;
-}
-
-Class.prototype.getDisplayName = function() {
-    return `Class ${this.number}`;
-};
-
-Class.prototype.assignLeader = function(student) {
-    if (student && student.klass.equal(this)) {
-        this.leader = student;
-    } else {
-        console.log("It is not one of us.");
+class Class {
+    constructor(number) {
+        this.number = number;
+        this.leader;
     }
-};
 
-Class.prototype.appendMember = function(student) {
-    student.klass = this;
-};
+    getDisplayName() {
+        return `Class ${this.number}`;
+    }
 
-Class.prototype.equal = function(klass) {
-    return klass && this.number == klass.number;
-};
+    assignLeader(student) {
+        if (student && student.klass.equal(this)) {
+            this.leader = student;
+        } else {
+            console.log("It is not one of us.");
+        }
+    }
 
-Class.prototype.isLeader = function(student) {
-    return this.leader && student && student.equal(this.leader);
-};
+    appendMember(student) {
+        student.klass = this;
+    }
+
+    equal(klass) {
+        return klass && this.number == klass.number;
+    }
+
+    isLeader(student) {
+        return this.leader && student && student.equal(this.leader);
+    }
+}
 
 
 export default Class;

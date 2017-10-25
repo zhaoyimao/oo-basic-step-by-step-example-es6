@@ -1,22 +1,21 @@
 import Person from "./person.js";
 
-function Student(id, name, age, klass) {
-    Person.apply(this, arguments);
-    this.klass = klass;
+class Student extends Person {
+    constructor(id, name, age, klass) {
+        super(id, name, age);
+        this.klass = klass;
+    }
+
+    introduce() {
+        if (this.klass.isLeader(this)) {
+            return `${super.introduce()} I am a Student. I am Leader of ${this.klass.getDisplayName()}.`;
+        }
+        return `${super.introduce()} I am a Student. I am at ${this.klass.getDisplayName()}.`;
+    }
+
+    equal(student) {
+        return student && this.id === student.id;
+    }
 }
 
-Student.prototype = Object.create(Person.prototype);
-Student.prototype.constructor = Student;
-
-Student.prototype.super_introduce = Student.prototype.introduce;
-Student.prototype.introduce = function() {
-    if (this.klass.isLeader(this)) {
-        return `${this.super_introduce()} I am a Student. I am Leader of ${this.klass.getDisplayName()}.`;
-    }
-    return `${this.super_introduce()} I am a Student. I am at ${this.klass.getDisplayName()}.`;
-};
-
-Student.prototype.equal = function(student) {
-    return student && this.id === student.id;
-};
 export default Student;

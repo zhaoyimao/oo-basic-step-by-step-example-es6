@@ -1,13 +1,15 @@
-function Class(number) {
-    this.number = number;
+class Class {
+    constructor(number) {
+        this.number = number;
+    }
+
+    getDisplayName() {
+        return `Class ${this.number}`;
+    }
+
+    equal(klass) {
+        return klass && this.number == klass.number;
+    }
 }
-
-Class.prototype.getDisplayName = function() {
-    return `Class ${this.number}`;
-};
-
-Class.prototype.equal = function(klass) {
-    return klass && this.number == klass.number;
-};
 
 export default Class;
