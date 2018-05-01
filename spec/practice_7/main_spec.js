@@ -27,6 +27,7 @@ describe("Person", () => {
 
         before(() => {
            klass = new Class(2); 
+           console.log("spec"+klass);
         });
 
         it("should have field name, age and class number", () => {

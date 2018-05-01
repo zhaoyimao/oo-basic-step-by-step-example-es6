@@ -2,15 +2,15 @@
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var _lodash = require("lodash");
+var _lodash = require("lodash");//引入lodash，
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _chai = require("chai");
+var _chai = require("chai");//断言库
 
 var _chai2 = _interopRequireDefault(_chai);
 
-var _sinon = require("sinon");
+var _sinon = require("sinon");//Sinon通过所谓的测试替代(test-double)轻松消除测试的复杂度,
 
 var _sinon2 = _interopRequireDefault(_sinon);
 
