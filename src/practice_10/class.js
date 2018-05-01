@@ -3,7 +3,7 @@ class Class{
         this.number=classNumber;
     }
     assignLeader(student){
-        if(student.klass.number==this.number){
+        if(student.klass==this){
             this.leader=student;  
         }else{
             this.leader="";
@@ -11,10 +11,10 @@ class Class{
         }
     }
     getDisplayName(){
-        return "Class 2";  
+        return `Class ${this.number}`;  
     }
     appendMember(student){
-        student.klass.number=this.number;
+        student.klass=this;
     }
 }
 

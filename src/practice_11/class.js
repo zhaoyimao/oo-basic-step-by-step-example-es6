@@ -1,57 +1,44 @@
-// function Class(classNumber){
-//     this.number=classNumber;
-//     this.assignLeader=function(student){
-//         if(student.klass.number===classNumber){
-//             this.leader=student;
-//         }else{
-//             this.leader="";
-//             console.log("It is not one of us.")
-//         }
-//     }
-//     this.getDisplayName=function(){
-//         return "Class 2";
-//     }
-//     this.appendMember=function(student){
-//         student.klass.number=this.number;
-//     }
-//     this.registerAssignLeaderListener=function(teacher){
-//      console.log("I am Tom. I know Jerry become Leader of Class 2."); 
-//     }
-//     this.registerJoinListener=function(teacher){
-//         console.log("I am Tom. I know Jerry has joined Class 2.");
-//     }
-//     this.isIn=function(){
-        
-//     }
-// }
 class Class{
     constructor(classNumber){
         this.number=classNumber;
     }
     assignLeader(student){
-        if(student.klass.number==this.number){
-            this.leader=student;  
+        if(student.klass==this){
+            this.leader=student; 
+            if(this._teacher){
+                console.log(`I am ${this._teacher.name}. I know ${student.name} become Leader of Class ${this.number}.`);
+            } 
         }else{
             this.leader="";
             console.log("It is not one of us.");
         }
     }
     getDisplayName(){
-        return "Class 2";  
+       return `Class ${this.number}`;
     }
     appendMember(student){
-        student.klass.number=this.number;
-        // this.registerJoinListener=function(teacher){
-        //     console.log("I am Tom. I know Jerry has joined Class 2.");
-        // }
+        student.klass=this;
+        if(this._teacher){
+            console.log(`I am ${this._teacher.name}. I know ${student.name} has joined Class ${this.number}.`);
         }
-    
-    
+        }
     registerJoinListener(teacher){
-        console.log("I am Tom. I know Jerry has joined Class 2.");
+        if(teacher.klasses.includes(this)){
+            this._teacher=teacher;
+        }
     }
     registerAssignLeaderListener(teacher){
-        console.log("I am Tom. I know Jerry become Leader of Class 2."); 
+        if(teacher.klasses.includes(this)){
+            this._teacher=teacher;
+        }
+    }
+    
+    isIn(teacher,student){
+        if(teacher.klasses.includes(student.klass)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

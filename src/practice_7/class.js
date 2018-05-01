@@ -3,7 +3,7 @@ class Class{
         this.number=classNumer;
     }
    getDisplayName(){
-       return "Class 2";
+       return `Class ${this.number}`;
    }
 }
 

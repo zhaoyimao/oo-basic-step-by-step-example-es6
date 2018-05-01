@@ -155,12 +155,12 @@ describe("Class", () => {
             expect(student.klass).to.equal(otherKlass);
             klass.appendMember(student);
             for(let i in student.klass){
-                console.log(i+student.klass[i]);
+                console.log(i+" "+student.klass[i]);
             }
             for(let i in klass){
-                console.log(i+klass[i]);
+                console.log(i+" "+klass[i]);
             }
-            console.log(student.klass===klass);
+            console.log(student.klass==klass);
             expect(student.klass).to.equal(klass);
         });
     });
