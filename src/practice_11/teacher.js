@@ -18,12 +18,11 @@ class Teacher extends Person{
         }
     }
     isTeaching(student){
-        if()
-        // if(this.klasses.includes(student.klass)){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
+        if(student.klass.isIn(this.klasses)){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
 // function Teacher(id,name,age,klasses){

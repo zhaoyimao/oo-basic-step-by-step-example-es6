@@ -33,8 +33,8 @@ class Class{
         }
     }
     
-    isIn(teacher,student){
-        if(teacher.klasses.includes(student.klass)){
+    isIn(teacher_klasses){
+        if(teacher_klasses.includes(this)){
             return true;
         }else{
             return false;
